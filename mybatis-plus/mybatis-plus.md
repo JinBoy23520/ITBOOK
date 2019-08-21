@@ -1,8 +1,22 @@
----
-description: Mybatis Plus技术分享
----
-
-# Mybatis Plus
-
-Mybatis Plus技术分享
+# 一丶概述
+公司小组内部技术分享，分配的第一个题目：Mybatis-Plus
+# 二丶其他文档
+[Mybatis-Plus官方文档](https://mp.baomidou.com/guide/tenant.html)
+[MyBatis-Plus 慕课入门视频教程](https://www.imooc.com/learn/1130)
+# 三丶我的文档
+[简单说说Mybatis](https://www.jianshu.com/p/00f555f38b7e)
+[Mybatis vs JPA（Hibernate）](https://www.jianshu.com/p/00f555f38b7e)
+[Mybatis-generator/通用Mapper/Mybatis-Plus对比](https://www.jianshu.com/p/7be6da536f8f)
+[Mybatis-Plus特性](https://www.jianshu.com/p/090d83e2c645)
+[Mybatis-Plus-常用实体注解](https://www.jianshu.com/p/1215afe13075)
+[JAVA中注解的实现原理](https://www.jianshu.com/p/4f67ee5c923f)
+[自定义注解](https://www.jianshu.com/p/f393621ed4f9)
+[Mybatis-Plus-简化 CRUD（实现的三种方式）](https://www.jianshu.com/p/9e5f0495042d)
+[Mybatis-Plus ActiveRecord模式](https://www.jianshu.com/p/dd9b471d08ea)
+[Mybatis-Plus代码生成器流程与基本原理](https://www.jianshu.com/p/95cba89b1af4)
+[Mybatis-Plus插件拓展](https://www.jianshu.com/p/b68179d60932)
+[Mybatis-Plus自动填充](https://www.jianshu.com/p/368806de112c)
+[Mybatis-Plus乐观锁插件](https://www.jianshu.com/p/d04eafd041b4)
+[Mybatis-Plus分页插件](https://www.jianshu.com/p/18f5c5881653)
+[Mybatis-Plus逻辑删除](https://www.jianshu.com/p/732955a8ca93)
 
