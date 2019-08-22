@@ -4,8 +4,8 @@
 
 ## MyBatis Plus
 
-* [Mybatis Plus](mybatis-plus/0.mybatis-plus.md)
-* [Untitled](mybatis-plus/1.简单说说Mybatis.md)
+* [0.mybatis-plus](mybatis-plus/0.mybatis-plus.md)
+* [1.简单说说Mybatis](mybatis-plus/1.简单说说Mybatis.md)
 * [Untitled](mybatis-plus/2.Mybatis vs JPA（Hibernate.md)
 * [Untitled](mybatis-plus/3Mybatis-generator VS 通用MapperVSMybatis-Plus对比.md)
 * [Untitled](mybatis-plus/4.Mybatis-Plus特性.md)
