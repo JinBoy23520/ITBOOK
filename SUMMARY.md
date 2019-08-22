@@ -12,7 +12,7 @@
 * [5.Mybatis-Plus-常用实体注解](mybatis-plus/5.Mybatis-Plus-常用实体注解.md)
 * [6.JAVA中注解的实现原理](mybatis-plus/6.JAVA中注解的实现原理.md)
 * [7.自定义注解](mybatis-plus/7.自定义注解.md)
-* [8.Mybatis-Plus-简化 CRUD实现的三种方式.md](mybatis-plus/8.Mybatis-Plus-简化 CRUD实现的三种方式.md)
+* [8.Mybatis-Plus-简化CRUD实现的三种方式.md](mybatis-plus/8.Mybatis-Plus-简化CRUD实现的三种方式.md)
 * [9.Mybatis-Plus-ActiveRecord模式](mybatis-plus/9.ActiveRecord模式.md)
 * [10.Mybatis-Plus代码生成器流程与基本原理](mybatis-plus/10.Mybatis-Plus代码生成器流程与基本原理.md)
 * [11.Mybatis-Plus插件拓展](mybatis-plus/11.Mybatis-Plus插件拓展.md)
