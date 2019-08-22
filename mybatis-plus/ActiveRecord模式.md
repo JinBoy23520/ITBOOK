@@ -1,0 +1,80 @@
+`ActiveRecord 模式`
+
+`简称AR模式 ，它是活动记录，是一种领域模型模式。特点：一个模型类对应关系型数据库中的一个表， 一个实例对应数据库中的一行记录，属于动态模型，简单讲就是直接用实体类对数据库进行Crud 操作,而Java是准静态语言不能支持AR 形式 MP作者对此进行探索才有现在的功能java 也能实现的AR模式。下面直接上代码` 
+```
+@Data
+@TableName("user")
+@EqualsAndHashCode(callSuper = false)
+public class User  extends Model<User> {
+private static final Long SeriaVersionUID=1L;
+}
+```
+首先实体类继承Model抽象类 继承后可能会有警告（我这里没有）警告是lombok自动生成的equals和hashcode没有调用父类 在类上添加 该注解@EqualsAndHashCode(callSuper = false) false 表示不调用 ，还有需要添加
+ private static final Long SERIALVERSIONUID=1L;（也可能不用加）
+接口 继承BaseMapper
+```
+public interface UserMapper extends BaseMapper<User> 
+```
+测试类如下
+```
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class ARTest {
+    /**
+     * AR新增 用实体类对象调用inser()
+     * 生成的sql： INSERT INTO user ( id, name, age, email, manager_id, create_time ) VALUES ( ?, ?, ?, ?, ?, ? )
+     */
+    @Test
+    public void test() {
+        User user = new User();
+        user.setAge(18);
+        user.setName("哈哈");
+        user.setEmail("hh@baomidou.com");
+        user.setManagerId(1088248166370832385L);
+        user.setCreateTime(LocalDateTime.now());
+        boolean b = user.insert();
+        System.out.println(b);
+    }
+
+    /**
+     * AR查询根据id用实体类对象调用selectById()
+     * 查询结果是一个新对象 并不会封装到原有对象里
+     * 生成的sql：SELECT id,name,age,email,manager_id,create_time FROM user WHERE id=?
+     */
+    @Test
+    public void testSelectId() {
+        User user = new User();
+        user.setId(1088248166370832385L);
+        User user1 = user.selectById();
+        System.out.println(user1);
+    }
+
+    /**
+     * AR 更新
+     * 生成的sql：UPDATE user SET name=? WHERE id=?
+     */
+    @Test
+    public void testUpdate() {
+        User user = new User();
+        user.setId(1088248166370832385L);
+        user.setName("王天凤");
+        boolean user1 = user.updateById();
+        System.out.println(user1);
+    }
+    /**
+     * AR 删除
+     * 生成的sql：DELETE FROM user WHERE id=?
+     * 
+     * 结果返回boolean 这里要注意的 MP在在处理返回值是 大于等于0 都会返回true
+     */
+    @Test
+    public void testDelete() {
+        User user = new User();
+        user.setId(1149946502220713986L);
+
+        boolean user1 = user.deleteById();
+        System.out.println(user1);
+    }
+}
+```
+还有很多方法这里只是列举了基本的 ，目前感觉MP就是把mybatis 所欠缺的那部分功能不上了让mybatis更实用
