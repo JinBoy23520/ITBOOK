@@ -1,0 +1,141 @@
+![image.png](https://upload-images.jianshu.io/upload_images/5260759-878e9630274ce328.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+# 一丶接口
+[Mybatis-Plus官网CRUD 接口](https://mp.baomidou.com/guide/crud-interface.html#mapper-crud-%E6%8E%A5%E5%8F%A3)
+
+# 二丶 CRUD实现的三种方式
+- 1 官网上面的Mybatis-puls与Spring mvc集成的demo：[https://gitee.com/baomidou/mybatisplus-spring-mvc](https://gitee.com/baomidou/mybatisplus-spring-mvc)
+
+```
+@Controller
+public class UserController extends BaseController {
+
+    private final IUserService userService;
+
+    @Autowired
+    public UserController(IUserService userService) {
+        this.userService = userService;
+    }
+
+    @RequestMapping("/")
+    public ModelAndView index(ModelAndView modelAndView) {
+        modelAndView.setViewName("index");
+        modelAndView.addObject("userList", userService.selectList(null));
+        return modelAndView;
+    }
+
+    @RequestMapping("/preSave")
+    public ModelAndView preSave(ModelAndView modelAndView, @RequestParam(value = "id", required = false) Long id) {
+        modelAndView.setViewName("save");
+        if (id != null) {
+            modelAndView.addObject("user", userService.selectById(id));
+        }
+        return modelAndView;
+    }
+
+    @ResponseBody
+    @RequestMapping("save")
+    public Object save(User user) {
+        user.setType(TypeEnum.DISABLED);
+        if (user.getId() == null) {
+            return userService.insert(user) ? renderSuccess("添加成功") : renderError("添加失败");
+        } else {
+            return userService.updateById(user) ? renderSuccess("修改成功") : renderError("修改失败");
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping("/delete")
+    public Object delete(@RequestParam(value = "id", required = false) Long id) {
+        return userService.deleteById(id) ? renderSuccess("删除成功") : renderError("删除失败");
+    }
+}
+```
+
+```
+/**
+ *
+ * User 表数据服务层接口实现类
+ *
+ */
+@Service
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
+
+
+}
+```
+这个是官方文档写好的这个是实现的一种方式，这个是使用了Mybatis-plus中的特性不需要去写sql，已经帮我们去实现了sql写的部分 
+
+只需要在DAO层继承 BaseMapper接口 和在Service层继承IService接口就可以使用Mybatis-plus提供的方法
+
+- 2注解实现:
+基本的CRUD我们可以不需要去手写sql，复杂的我们还是手写一点比较好，虽然Mybatis-plus提供了拼接的方法，但是不好，一不小心就会出现问题，所以我们使用注解去实现sql执行操作:
+```
+@Component
+public interface UserMapper extends SuperMapper<User> {
+
+    /**
+     * 查询所有:
+     * @return
+     */
+    @Select("SELECT * FROM user")
+    public List<User> findAll();
+
+    /**
+     * 查询数据:
+     * @param userId
+     * @return
+     */
+    @Select("SELECT * FROM user WHERE id=#{userId}")
+    public User findOne(int userId);
+
+    /**
+     * 添加:
+     * @param user
+     */
+    @Insert("INSERT INTO user(name,password) VALUES(#{name},#{password})")
+    public void createUser(User user);
+
+    /**
+     * 修改:
+     * @param user
+     */
+    @Update("UPDATE user SET name=#{name},password=#{password}")
+    public void update(User user);
+
+    /**
+     * 删除:
+     * @param id
+     */
+    @Delete("DELETE  FROM user WHERE id=#{id}")
+    public void delete(int id);
+```
+这个就是在DAO层使用注解去操作数据库
+- 3XML实现:
+Mybatis-puls也提供了我们使用xml的方式去操作数据库
+```
+<resultMap id="userResult" type="com.baomidou.springmvc.model.system.User">
+   <id property="id" column="id"></id>
+   <result property="name" column="name"></result>
+   <result property="password" column="password"></result>
+</resultMap>
+<!-- 通用查询结果列-->
+<sql id="Base_Column_List">
+   id, name, age
+</sql>
+<select id="findAll" resultMap="userResult">
+   SELECT * FROM user
+</select>
+
+<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.baomidou.springmvc.model.system.User">
+     INSERT  INTO  user(name,password) values(#{name},#{password})
+</insert>
+
+<update id="update" parameterType="com.baomidou.springmvc.model.system.User">
+   UPDATE  user SET name=#{name} ,password=#{password} WHERE id=#{id};
+</update>
+
+<delete id="delete" parameterType="int">
+   DELETE FROM user WHERE id=#{id}
+</delete>
+```
+
