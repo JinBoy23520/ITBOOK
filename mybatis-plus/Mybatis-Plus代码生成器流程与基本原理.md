@@ -1,0 +1,5 @@
+![image.png](https://upload-images.jianshu.io/upload_images/5260759-f47fdfc8c9545e44.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+`mybatis plus`代码生成器的代码，原理其实很简单，定义好velocity模板（当然你也可以自定义），然后传参数渲染模板生成对应的文件。
+
+`我建议你生成的位置最好不要直接覆盖原来的文件，你可能已经有过修改，直接覆盖的话会导致丢失。`
+`而mybatis generator生成的代码就是基本的增删改查和实体。模板好像改不了，灵活性明显不够。`
