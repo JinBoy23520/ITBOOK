@@ -6,7 +6,7 @@
 
 * [0.mybatis-plus](mybatis-plus/0.mybatis-plus.md)
 * [1.简单说说Mybatis](mybatis-plus/1.简单说说Mybatis.md)
-* [2.MybatisvsJPAHibernate](mybatis-plus/2.MybatisvsJPA(Hibernate).md)
+* [2.MybatisvsJPAHibernate](mybatis-plus/2.MybatisvsJPA.md)
 * [3.Mybatis-generatorVS通用MapperVSMybatis-Plus对比](mybatis-plus/3Mybatis-generatorVS通用MapperVSMybatis-Plus对比.md)
 * [4.Mybatis-Plus特性](mybatis-plus/4.Mybatis-Plus特性.md)
 * [5.Mybatis-Plus-常用实体注解](mybatis-plus/5.Mybatis-Plus-常用实体注解.md)
